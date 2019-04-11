@@ -17,14 +17,13 @@ export default class Forms extends Component {
     }
     onSubmitHandler(e){
         e.preventDefault();
-        this.setState((state)=>({
-            detailsFlag : !state.detailsFlag
-        }));
+        alert("yes");
     }
 
     render() {
         return (
             <div>
+                {/* EditableForm */}
                 <form onSubmit={this.onSubmitHandler} autocomplete="off">
                     <label>Firstname
                         <input type="text" name="firstName" value={this.state.firstName} onChange={this.onChangeHandler} /> </label> <br />
@@ -35,16 +34,12 @@ export default class Forms extends Component {
                     </label> <br/>
                     <button type="submit">Submit</button>
                 </form>
-                {
-                    this.state.detailsFlag ? 
-                    (<div>
+                {/* ReadOnly */}
+                    <div>
                         <label >First Name : {this.state.firstName}</label> <br/>
                         <label >Last Name : {this.state.lastName}</label> <br/>
                         <label >Comment : {this.state.comment} </label>                    
-                     </div>)   :
-                     null 
-                }
-                
+                     </div>
             </div>
         )
     }
