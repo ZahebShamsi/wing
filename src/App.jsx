@@ -1,28 +1,34 @@
 import React, { Component } from "react";
 import mainPage from './constants';
-import Header from './Components/header';
-import Foot from './Components/footer';
-import Login from './Components/login';
+
+import Forms from './Components/forms';
+import LoginContainer from './Components/loginContainer'
 // import 'bootstrap/dist/css/bootstrap.css'
 
 export default class App extends Component {
-    btnName= ["one","two","three","four","five","six"]
+    constructor(props) {
+        super(props);
+        this.state = {
+            formFlag: true
+        }
+        this.changeComponent=this.changeComponent.bind(this)
+    }
+    changeComponent(){
+        this.setState(state => ({
+            formFlag: !state.formFlag
+          }));
+    }
+
     render() {
         return (
             <div>
                 <div>
-                    <Header name={mainPage.header} />
+                    <button onClick={this.changeComponent}>Toggle</button>
                 </div>
                 <div>
-                    <Login username={mainPage.login.userName} 
-                           password={mainPage.login.password} 
-                           loginbtn={mainPage.login.loginbtnName}
-                           btnName={this.btnName}/>
-                </div>
-                <div>
-                    <Foot credits={mainPage.footer} />
+                    {this.state.formFlag ? <Forms /> : <LoginContainer />}
                 </div>
             </div>
-        );
+        )
     }
 }

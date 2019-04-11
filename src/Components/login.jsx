@@ -9,10 +9,9 @@ export default class Login extends Component {
             password:"pass"
         } 
         this.eventClick = this.eventClick.bind(this); 
-        // this.clickListButton=this.clickListButton.bind(this);
+        this.clickListButton=this.clickListButton.bind(this);
     }
     btnName =this.props.btnName;
-    listBtnName= this.btnName.map((name)=> <li><button onClick={this.clickListButton}>{name}</button></li>)
     
     componentDidMount(){
         this.timer=setTimeout( () => {
@@ -29,30 +28,32 @@ export default class Login extends Component {
         alert(this.props.username +"  "+ this.props.password
                 +"  "+this.state.name+"  "+this.state.password)
     }
-    clickListButton = () => {
-        alert("fds");
+    clickListButton(btnData) {
+        alert(btnData)
     }
     render() {
+        const listBtnName= this.btnName.map((name,index) => {
+            return <li key={index}><button onClick={() => {this.clickListButton(name)} }>{name}</button></li>
+        });
         return (
             <div>
                 <div>
                     <label>{this.props.username}</label>
                     <input></input>
-                    <div class="small">The username is {this.state.name}</div>
+                    <div >The username is {this.state.name}</div>
                 </div>
                 <div>
                     <label>{this.props.password}</label>
                     <input></input>
-                    <div class="small">The password is {this.state.password}</div>
+                    <div >The password is {this.state.password}</div>
                 </div>
-                <div class="btn btn-success" onClick={this.eventClick}>{this.props.loginbtn}</div>
+                <div onClick={this.eventClick}>{this.props.loginbtn}</div>
                  <div>
                      <ul>
-                        {this.listBtnName}
+                        {listBtnName}
                      </ul>
                  </div>
             </div>
-
         )
     }
 }
