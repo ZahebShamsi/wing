@@ -2,7 +2,8 @@ const mainPage = {
     header : "HimSafar",
     login : {
            userName: "UserName",
-           password: "Password"
+           password: "Password",
+           loginbtnName: "SignIn"
             },
     footer : "Shamsi"
     

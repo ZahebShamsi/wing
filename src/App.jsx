@@ -13,7 +13,9 @@ export default class App extends Component {
                     <Header name={mainPage.header} />
                 </div>
                 <div>
-                    <Login username={mainPage.login.userName} password={mainPage.login.password}/>
+                    <Login username={mainPage.login.userName} 
+                           password={mainPage.login.password} 
+                           loginbtn={mainPage.login.loginbtnName}/>
                 </div>
                 <div>
                     <Foot credits={mainPage.footer} />
