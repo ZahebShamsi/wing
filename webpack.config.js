@@ -3,6 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
   entry: "./src/index.jsx",
+  devtool: 'inline-source-map',
   mode: "development",
   module: {
     rules: [
