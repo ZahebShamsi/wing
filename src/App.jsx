@@ -1,6 +1,7 @@
 import React, { Component} from "react";
 import { connect } from "react-redux";
-import LoginContainer from './components/login/LoginContainer'
+import LoginContainer from './components/login/LoginContainer';
+import ProductsContainer from './components/products/ProductsContainer';
 
 class App extends Component {
     componentDidMount() {
@@ -9,7 +10,8 @@ class App extends Component {
     render() {
         return(
             <div>
-                <LoginContainer></LoginContainer>
+                {/* <LoginContainer></LoginContainer>  */}
+                <ProductsContainer></ProductsContainer>              
             </div>
         );
     }
