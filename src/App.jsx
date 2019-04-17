@@ -1,5 +1,6 @@
 import React, { Component} from "react";
 import { connect } from "react-redux";
+import LoginContainer from './components/login/LoginContainer'
 
 class App extends Component {
     componentDidMount() {
@@ -8,7 +9,7 @@ class App extends Component {
     render() {
         return(
             <div>
-                <h1>Finally it's working</h1>
+                <LoginContainer></LoginContainer>
             </div>
         );
     }
