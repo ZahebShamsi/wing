@@ -2,6 +2,7 @@ import React, { Component} from "react";
 import { connect } from "react-redux";
 import LoginContainer from './components/login/LoginContainer';
 import ProductsContainer from './components/products/ProductsContainer';
+import DashBoardContainer from './components/dashboard/dashboardContainer'
 
 class App extends Component {
     componentDidMount() {
@@ -11,7 +12,8 @@ class App extends Component {
         return(
             <div>
                 {/* <LoginContainer></LoginContainer>  */}
-                <ProductsContainer></ProductsContainer>              
+                <ProductsContainer></ProductsContainer>
+                <DashBoardContainer></DashBoardContainer>
             </div>
         );
     }
