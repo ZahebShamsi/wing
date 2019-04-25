@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Cart from './Cart';
 import Invoice from './Invoice';
+import {Link} from 'react-router-dom'
 
 
-export default class DashboardContainer extends Component {
+export default class DashBoardContainer extends Component {
     constructor(props){
         super(props)
         this.state = {
@@ -30,16 +31,21 @@ export default class DashboardContainer extends Component {
     render() {
         return (
             <div>
-                <h1>Dashboard</h1>
-                <Cart cartItems={this.state.cartItems}></Cart>
-                <hr></hr>
-                {this.state.isInvoiceVisible ?
-                (<Invoice totalBill={this.state.invoiceDetails.totalBill}
-                        userDetails={this.state.invoiceDetails.userDetails}
-                        toggleInvoice ={this.toggleInvoice}
-                ></Invoice>) : 
-                <button onClick={this.toggleInvoice}>Show Invoice</button>
-                }
+                <div>
+                    <Link to='./products'>Products</Link>
+                </div>
+                <div>
+                    <h1>Dashboard</h1>
+                    <Cart cartItems={this.state.cartItems}></Cart>
+                    <hr></hr>
+                    {this.state.isInvoiceVisible ?
+                    (<Invoice totalBill={this.state.invoiceDetails.totalBill}
+                            userDetails={this.state.invoiceDetails.userDetails}
+                            toggleInvoice ={this.toggleInvoice}
+                    ></Invoice>) : 
+                    <button onClick={this.toggleInvoice}>Show Invoice</button>
+                    }
+                </div>
             </div>
         )
     }

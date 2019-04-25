@@ -1,5 +1,6 @@
 import React,{Component} from 'react';
-import Products from './Products'
+import Products from './Products';
+import {Link} from 'react-router-dom';
 
 export default class ProductsContainer extends Component{
     constructor(props){
@@ -18,7 +19,8 @@ export default class ProductsContainer extends Component{
     render(){
         return(
             <div>
-            <Products products={this.state.productsData}></Products>
+                <Link to='/dashboard'>Dashboard</Link>
+                <Products products={this.state.productsData}></Products>           
             </div>
         )
     }
