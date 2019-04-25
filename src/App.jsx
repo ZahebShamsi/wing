@@ -11,6 +11,7 @@ export default class App extends Component {
         this.state = {
             formFlag: true
         }
+        
         this.changeComponent=this.changeComponent.bind(this)
     }
     changeComponent(){
