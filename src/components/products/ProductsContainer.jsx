@@ -1,27 +1,55 @@
 import React,{Component} from 'react';
 import Products from './Products';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import {qIncrementActionCreator} from '../../reducers/products/productsActionCreator';
+import {qDecrementActionCreator} from '../../reducers/products/productsActionCreator'
 
-export default class ProductsContainer extends Component{
+class ProductsContainer extends Component{
     constructor(props){
         super(props)
         this.state = {
-            productsData : [
-                { "name":"Maths", "price":40, "quantity":23 },
-                { "name":"Physics", "price":60, "quantity":57 },
-                { "name":"Chemistry", "price":70, "quantity":35 },
-                { "name":"Biology", "price":85, "quantity":44 },
-                { "name":"English", "price":37, "quantity":13 },               
-            ]
         }
+        this.onIncrementQuantity=this.onIncrementQuantity.bind(this);
+        this.onDecrementQuantity=this.onDecrementQuantity.bind(this)
     }
-
+    onIncrementQuantity(productName){
+        this.props.onIncrementQuantityHandler(productName);
+    }
+    onDecrementQuantity(productName){
+        this.props.onDecrementQuantityHandler(productName);
+    }
     render(){
         return(
             <div>
                 <Link to='/dashboard'>Dashboard</Link>
-                <Products products={this.state.productsData}></Products>           
+                 <Products products={this.props.productsData.products}
+                        onIncrementQuantity={this.onIncrementQuantity}
+                        onDecrementQuantity={this.onDecrementQuantity}>
+                </Products>      
             </div>
         )
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        productsData: state.productsData
+    }
+}
+const mapDispatchToProps  = dispatch => {
+    return{
+        onIncrementQuantityHandler : (productName) => {
+            dispatch(qIncrementActionCreator(productName))
+        },
+        onDecrementQuantityHandler : (productName) => {
+            dispatch(qDecrementActionCreator(productName))
+        }
+        
+    }   
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProductsContainer);
