@@ -1,25 +1,15 @@
 import React, { Component } from 'react';
 import Cart from './Cart';
 import Invoice from './Invoice';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 
-export default class DashBoardContainer extends Component {
+ class DashBoardContainer extends Component {
     constructor(props){
         super(props)
-        this.state = {
-            cartItems : [
-                {name:"JavaBook" , quantity:5 , price:25},
-                {name:"PythonBook" , quantity:8 , price:15},
-                {name:"ReactBook" , quantity:10 , price:25}
-            ],
-            isInvoiceVisible : false,
-            invoiceDetails : {
-                totalBill : 0,
-                userDetails :{
-                    username :"Shamsi" , address : "Noida" , phoneNumber : "1235" , email :"shamsi@gmail.com"
-                }               
-            }
+        this.state = 
+        {
         }
         this.toggleInvoice=this.toggleInvoice.bind(this);
     }
@@ -36,12 +26,11 @@ export default class DashBoardContainer extends Component {
                 </div>
                 <div>
                     <h1>Dashboard</h1>
-                    <Cart cartItems={this.state.cartItems}></Cart>
+                    <Cart cartItems={this.props.cartItems.cartItems}></Cart>
                     <hr></hr>
                     {this.state.isInvoiceVisible ?
-                    (<Invoice totalBill={this.state.invoiceDetails.totalBill}
-                            userDetails={this.state.invoiceDetails.userDetails}
-                            toggleInvoice ={this.toggleInvoice}
+                    (<Invoice totalBill={this.props.cartItems.totalInvoice}
+                              toggleInvoice ={this.toggleInvoice}
                     ></Invoice>) : 
                     <button onClick={this.toggleInvoice}>Show Invoice</button>
                     }
@@ -49,4 +38,17 @@ export default class DashBoardContainer extends Component {
             </div>
         )
     }
-} 
+}
+
+const mapStateToProps = (state) => {
+        return {
+            cartItems : state.cartItems,
+            billingAmount : state.totalInvoice
+        }
+}
+
+
+export default connect(
+    mapStateToProps,
+    null
+)(DashBoardContainer);

@@ -3,15 +3,15 @@ import Products from './Products';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import {qIncrementActionCreator} from '../../reducers/products/productsActionCreator';
-import {qDecrementActionCreator} from '../../reducers/products/productsActionCreator'
+import {qDecrementActionCreator} from '../../reducers/products/productsActionCreator';
+import {dashboardActionCreator} from '../../reducers/dashboard/dashboardActionCreator';
 
 class ProductsContainer extends Component{
     constructor(props){
-        super(props)
-        this.state = {
-        }
+        super(props);
         this.onIncrementQuantity=this.onIncrementQuantity.bind(this);
-        this.onDecrementQuantity=this.onDecrementQuantity.bind(this)
+        this.onDecrementQuantity=this.onDecrementQuantity.bind(this);
+        this.addToCartHandler = this.addToCartHandler.bind(this);
     }
     onIncrementQuantity(productName){
         this.props.onIncrementQuantityHandler(productName);
@@ -19,13 +19,18 @@ class ProductsContainer extends Component{
     onDecrementQuantity(productName){
         this.props.onDecrementQuantityHandler(productName);
     }
+    addToCartHandler(){
+        let selectedQuant = this.props.productsData.products.filter((products)=>products.quantity > 0 )
+        this.props.onAddtoCartHandler(selectedQuant);
+    }
     render(){
         return(
             <div>
                 <Link to='/dashboard'>Dashboard</Link>
                  <Products products={this.props.productsData.products}
                         onIncrementQuantity={this.onIncrementQuantity}
-                        onDecrementQuantity={this.onDecrementQuantity}>
+                        onDecrementQuantity={this.onDecrementQuantity}
+                        addToCart = {this.addToCartHandler}>
                 </Products>      
             </div>
         )
@@ -44,6 +49,9 @@ const mapDispatchToProps  = dispatch => {
         },
         onDecrementQuantityHandler : (productName) => {
             dispatch(qDecrementActionCreator(productName))
+        },
+        onAddtoCartHandler : (selectedQuant) => {
+            dispatch(dashboardActionCreator(selectedQuant))
         }
         
     }   

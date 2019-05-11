@@ -15,7 +15,3 @@ export const qDecrementActionCreator = (productName) => {
             payload : productName  
          } 
         }
-
-
-// export const qIncrementActionCreator;
-// export const qDecrementActionCreator;

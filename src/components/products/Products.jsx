@@ -5,8 +5,19 @@ export default class Products extends Component{
     constructor(props){
         super(props)
         this.state = {
-            errorMessage : false
+            cartAddAlert : false
         }
+        this.onClickHandler =this.onClickHandler.bind(this)
+    }
+    onClickHandler() {
+        this.props.products.forEach(element => {
+            if(element.quantity>0){
+                this.setState({
+                    cartAddAlert :true
+                })
+            }
+        });
+        this.props.addToCart();
     }
 
     render(){
@@ -19,22 +30,12 @@ export default class Products extends Component{
                                                 <td>{product.price}</td>
                                                 <td>{product.quantity}</td>                                             
                                                 <button onClick={() => this.props.onIncrementQuantity(product.name)}>+</button>                                          
-                                                <button onClick={() => { if(product.quantity == 0){
-                                                       this.setState({
-                                                           errorMessage : true
-                                                       })                                                  
-                                                        } 
-                                                        else {
-                                                            this.props.onDecrementQuantity(product.name)
-                                                        }} }
-                                                >
-                                                -
-                                                </button>
-                                            {this.state.errorMessage && <label>Please Select at least one Product</label> }                           
+                                                <button onClick={() => this.props.onDecrementQuantity(product.name)}>-</button>
                                             </tr>
-
                     ))}              
-                </table>    
+                </table> 
+                <button onClick = {this.onClickHandler}>Add to Cart</button>  
+                {this.state.cartAddAlert && <label>Product added to cart.Visit <a href="./#/dashboard">Dashboard</a> to view your cart. </label> }  
             </div>
         )
     }
