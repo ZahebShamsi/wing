@@ -30,12 +30,16 @@ export default class Products extends Component{
                                                 <td>{product.price}</td>
                                                 <td>{product.quantity}</td>                                             
                                                 <button onClick={() => this.props.onIncrementQuantity(product.name)}>+</button>                                          
-                                                <button onClick={() => this.props.onDecrementQuantity(product.name)}>-</button>
+                                                <button onClick={() => {
+                                                    if(product.quantity >0){
+                                                        this.props.onDecrementQuantity(product.name)}
+                                                        }}>-</button>
                                             </tr>
                     ))}              
                 </table> 
                 <button onClick = {this.onClickHandler}>Add to Cart</button>  
                 {this.state.cartAddAlert && <label>Product added to cart.Visit <a href="./#/dashboard">Dashboard</a> to view your cart. </label> }  
+                {/* <ul>{this.props.serverData.map((products) => <li>{products.name}</li>)}</ul> */}
             </div>
         )
     }
