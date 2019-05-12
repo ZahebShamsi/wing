@@ -3,8 +3,7 @@ import Products from './Products';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import {qIncrementActionCreator} from '../../reducers/products/productsActionCreator';
-import {qDecrementActionCreator} from '../../reducers/products/productsActionCreator';
+import {qIncrementActionCreator, qDecrementActionCreator, productDataRequest} from '../../reducers/products/productsActionCreator';
 import {dashboardActionCreator} from '../../reducers/dashboard/dashboardActionCreator';
 
 class ProductsContainer extends Component{   
@@ -29,13 +28,7 @@ class ProductsContainer extends Component{
         this.props.onAddtoCartHandler(selectedQuant);
     }
     componentDidMount(){
-        axios.get('https://icetray-87641.firebaseio.com/products.json')
-              .then((response) => {
-                //   console.log(response);
-                  this.setState ({
-                      data : response.data
-                  })
-                })
+        this.props.productDataRequest();
     }
     render(){
         return(
@@ -67,8 +60,10 @@ const mapDispatchToProps  = dispatch => {
         },
         onAddtoCartHandler : (selectedQuant) => {
             dispatch(dashboardActionCreator(selectedQuant))
-        }
-        
+        },
+        productDataRequest : () =>{
+            dispatch(productDataRequest())
+        } 
     }   
 }
 

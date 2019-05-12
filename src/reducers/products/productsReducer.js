@@ -2,13 +2,7 @@
 import productsActionCreator from './productsActionCreator';
 
 let initialState = {
-  products: [
-    { "name": "Maths", "price": 40, "quantity": 0 },
-    { "name": "Physics", "price": 60, "quantity": 0 },
-    { "name": "Chemistry", "price": 70, "quantity": 0 },
-    { "name": "Biology", "price": 85, "quantity": 0 },
-    { "name": "English", "price": 37, "quantity": 0 },
-  ]
+  products: []
 }
 function productsReducer(state = initialState, action) {
   switch (action.type) {
@@ -31,6 +25,12 @@ function productsReducer(state = initialState, action) {
         return productdata
       })
       return { products: productsData };
+    
+    case "PRODUCT_DATA_REQUEST_SUCCESS" :
+      return {
+        products : action.payload.data
+      }   
+
 
     default:
       return state;

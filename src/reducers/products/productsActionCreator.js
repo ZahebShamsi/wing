@@ -15,3 +15,9 @@ export const qDecrementActionCreator = (productName) => {
             payload : productName  
          } 
         }
+
+export const productDataRequest = () => {
+        return {
+            type : "PRODUCT_DATA_REQUEST",
+        }
+}
