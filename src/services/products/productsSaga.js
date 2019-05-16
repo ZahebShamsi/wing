@@ -1,7 +1,7 @@
 import { takeLatest, call , put } from 'redux-saga/effects';
 import  makeProductsApiRequest  from './productsApi';
 
-export default function* productsSaga(){
+export  function* productsSaga(){
     yield takeLatest("PRODUCT_DATA_REQUEST",getProducts);
 }
 
@@ -13,3 +13,6 @@ function* getProducts(){
         console.log(e);
     }
 }
+
+
+

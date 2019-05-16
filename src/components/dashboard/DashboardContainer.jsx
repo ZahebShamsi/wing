@@ -3,6 +3,7 @@ import Cart from './Cart';
 import Invoice from './Invoice';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCreator'
 
 
  class DashBoardContainer extends Component {
@@ -12,6 +13,9 @@ import {connect} from 'react-redux';
         {
         }
         this.toggleInvoice=this.toggleInvoice.bind(this);
+    }
+    componentDidMount(){
+        this.props.cartItemsLoad();
     }
     toggleInvoice(){
         this.setState({
@@ -24,6 +28,7 @@ import {connect} from 'react-redux';
                 <div>
                     <Link to='./products'>Products</Link>
                 </div>
+                {this.props.cartItems.cartItems.length > 0 ?
                 <div>
                     <h1>Dashboard</h1>
                     <Cart cartItems={this.props.cartItems.cartItems}></Cart>
@@ -34,7 +39,8 @@ import {connect} from 'react-redux';
                     ></Invoice>) : 
                     <button onClick={this.toggleInvoice}>Show Invoice</button>
                     }
-                </div>
+                 </div> :  
+                 <div>No items in your cart </div> }
             </div>
         )
     }
@@ -47,8 +53,15 @@ const mapStateToProps = (state) => {
         }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        cartItemsLoad : () => dispatch(loadCartItemsRequest())
+
+    }
+}
+
 
 export default connect(
     mapStateToProps,
-    null
+    mapDispatchToProps
 )(DashBoardContainer);

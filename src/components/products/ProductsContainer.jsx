@@ -2,7 +2,6 @@ import React,{Component} from 'react';
 import Products from './Products';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import {qIncrementActionCreator, qDecrementActionCreator, productDataRequest} from '../../reducers/products/productsActionCreator';
 import {dashboardActionCreator} from '../../reducers/dashboard/dashboardActionCreator';
 
@@ -28,13 +27,13 @@ class ProductsContainer extends Component{
         this.props.onAddtoCartHandler(selectedQuant);
     }
     componentDidMount(){
-        this.props.productDataRequest();
+        this.props.productDatRequest();
     }
     render(){
         return(
             <div>
                 <Link to='/dashboard'>Dashboard</Link>
-                 <Products serverData={this.state.data}
+                 <Products
                         products={this.props.productsData.products}
                         onIncrementQuantity={this.onIncrementQuantity}
                         onDecrementQuantity={this.onDecrementQuantity}
@@ -61,7 +60,7 @@ const mapDispatchToProps  = dispatch => {
         onAddtoCartHandler : (selectedQuant) => {
             dispatch(dashboardActionCreator(selectedQuant))
         },
-        productDataRequest : () =>{
+        productDatRequest : () =>{
             dispatch(productDataRequest())
         } 
     }   
