@@ -1,9 +1,6 @@
 
-const signInActionCreator = (loginData) => {
+export const signInActionCreator = () => {
     return {
-        type : "USER_SIGN_IN" ,
-        payload : loginData       
+        type : "LOGIN_AUTH_REQUEST"      
     }
 }
-
-export default signInActionCreator;

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Login from './Login';
 import { connect } from 'react-redux';
 import {signInActionCreator} from '../../reducers/login/loginActionCreators';
+import { Redirect } from 'react-router-dom';
 
 class LoginContainer extends Component{
     constructor(props) {
@@ -19,19 +20,14 @@ class LoginContainer extends Component{
         })
     }
     onSignInHandler(e){
-        const data = {
-            username : this.state.username,
-            password: this.state.password
-        }
-        this.props.signInHandler(data);
+        this.props.signInHandler();
     }
     render(){
         return (
             <div>
             <Login  username={this.state.username} password={this.state.password} 
                     onValueChange={this.onChangeHandler} onSignIn={this.onSignInHandler}/> 
-            <h6>{this.state.username}</h6>
-            <h6>{this.state.password}</h6>
+            {this.props.sessionData.isAuthenticated &&  <Redirect to ="/products" />}
             
             </div>     
         )
@@ -46,8 +42,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps  = dispatch => {
     return{
-        signInHandler : (loginData) => {
-            dispatch(signInActionCreator(loginData))
+        signInHandler : () => {
+            dispatch(signInActionCreator())
         }
         
     }   

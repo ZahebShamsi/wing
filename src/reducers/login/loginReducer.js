@@ -5,8 +5,10 @@ let intialState = {
 }
 function loginReducer(state = intialState, action){
   switch (action.type) {
-    case "USER_SIGN_IN" :
-        return {...state, isAuthenticated:true , sessionData: action.payload}
+    case "LOGIN_AUTH_SUCCESS":
+        return {
+            ...state , isAuthenticated : action.payload
+        }
     default :
         return state;     
   }
