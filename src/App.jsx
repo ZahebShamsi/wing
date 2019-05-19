@@ -6,7 +6,7 @@ export default class App extends Component {
     
     render() {
         return(
-            <div>
+            <div style={{backgroundColor: '#e0e2e5'}}>
                 <HashRouter>
                     <AppTopbar/>
                     <Switch>

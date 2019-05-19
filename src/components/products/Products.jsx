@@ -3,7 +3,6 @@ import {
     Card, CardHeader, CardMedia, CardContent, Fab, CardActions, IconButton, Button,
     Snackbar
 } from '@material-ui/core';
-import { FavoriteIcon, ShareIcon, MoreVertIcon } from '@material-ui/icons';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -17,6 +16,8 @@ const styles = theme => ({
     },
     button: {
         marginLeft: '5%',
+        margin: theme.spacing.unit,
+        
     },
     media: {
         height: 0,
