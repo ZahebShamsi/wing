@@ -6,12 +6,14 @@ export default class App extends Component {
     
     render() {
         return(
-            <div style={{backgroundColor: '#e0e2e5'}}>
+            <div style={{backgroundColor: '#e0e2e5',}}>
                 <HashRouter>
                     <AppTopbar/>
-                    <Switch>
-                        { routes.map( route => <Route  {...route}/>) }
-                    </Switch>
+                    <div style={{marginTop: '9%'}}>
+                        <Switch>
+                            { routes.map( route => <Route  {...route}/>) }
+                        </Switch>
+                    </div>
                 </HashRouter>
             </div>
         
