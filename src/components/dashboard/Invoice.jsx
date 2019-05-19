@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-
+import {Button} from '@material-ui/core'
 
 export default class Invoice extends Component{
     render(){
@@ -7,7 +7,8 @@ export default class Invoice extends Component{
             <div>
                 <h2>Invoice</h2>
                 <div><label>Total Bill:</label>{this.props.totalBill}</div>
-                <button onClick={this.props.toggleInvoice}>Hide Invoice</button>
+                <Button variant="contained" color="secondary"
+                        onClick={this.props.toggleInvoice}>Hide Invoice</Button>
             </div>          
         )
     }

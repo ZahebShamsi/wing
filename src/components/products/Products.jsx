@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardMedia, CardContent, Fab,CardActions, IconButton, Button,
-         Snackbar } from '@material-ui/core';
+import {
+    Card, CardHeader, CardMedia, CardContent, Fab, CardActions, IconButton, Button,
+    Snackbar
+} from '@material-ui/core';
 import { FavoriteIcon, ShareIcon, MoreVertIcon } from '@material-ui/icons';
-import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     card: {
-      maxWidth: 300,
+        maxWidth: 300,
     },
     cartButton: {
         position: 'fixed',
@@ -15,28 +16,28 @@ const styles = theme => ({
         bottom: '5%'
     },
     button: {
-        marginLeft : '5%',
+        marginLeft: '5%',
     },
     media: {
-      height: 0,
-      paddingTop: '56.25%', // 16:9
+        height: 0,
+        paddingTop: '56.25%', // 16:9
     },
     actions: {
-      display: 'flex',
+        display: 'flex',
     },
     expand: {
-      transform: 'rotate(0deg)',
-      marginLeft: 'auto',
-      transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-      }),
+        transform: 'rotate(0deg)',
+        marginLeft: 'auto',
+        transition: theme.transitions.create('transform', {
+            duration: theme.transitions.duration.shortest,
+        }),
     },
     expandOpen: {
-      transform: 'rotate(180deg)',
+        transform: 'rotate(180deg)',
     },
-  });
+});
 
- class Products extends Component {
+class Products extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -58,49 +59,49 @@ const styles = theme => ({
     render() {
         const { classes } = this.props
         return (
+            <div>
+                {this.props.products.map((product) => (
                     <div>
-                        {this.props.products.map((product) => (
-                            <div>
-                                <Card className={classes.card}>
-                                    <CardHeader
-                                        title={product.name}
-                                    />
-                                    <CardMedia className= {classes.media}
-                                    image={product.imgSource}
-                                        title={product.name}
-                                    />
-                                    <div className= {classes.actions}>
-                                    <CardContent>{'Rs ' + product.price}</CardContent>
-                                    <Button className={classes.button} variant="contained" color="primary" size="small"
-                                        onClick={() => this.props.onIncrementQuantity(product.name)}>+</Button>
-                                    <CardContent>{product.quantity}</CardContent>
-                                    <Button className={classes.button} variant="contained" color="primary" size="small"
+                        <Card className={classes.card}>
+                            <CardHeader
+                                title={product.name}
+                            />
+                            <CardMedia className={classes.media}
+                                image={product.imgSource}
+                                title={product.name}
+                            />
+                            <div className={classes.actions}>
+                                <CardContent>{'Rs ' + product.price}</CardContent>
+                                <Button className={classes.button} variant="contained" color="primary" size="small"
+                                    onClick={() => this.props.onIncrementQuantity(product.name)}>+</Button>
+                                <CardContent>{product.quantity}</CardContent>
+                                <Button className={classes.button} variant="contained" color="primary" size="small"
                                     onClick={() => {
                                         if (product.quantity > 0) {
                                             this.props.onDecrementQuantity(product.name)
                                         }
                                     }}>-</Button>
-                                    </div>
-                                </Card>
                             </div>
-                        ))}
-                        <Button variant="contained" color="secondary" className={classes.cartButton} onClick={this.onClickHandler}>Add to Cart</Button>
-                        <Snackbar  anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'center',
-                            }}
-                            open={this.state.cartAddAlert} autoHideDuration={6000} onClose={this.handleClose}
-                            ContentProps={{
-                                'aria-describedby': 'message-id',
-                            }}
-                            message={
-                                <span id="message-id">
-                                    Product added to cart.Visit <a href="./#/dashboard">Dashboard</a> to view your cart. 
-                            </span>}
-                            variant="success"
-                        />
-                        {/* {this.state.cartAddAlert && <label>Product added to cart.Visit <a href="./#/dashboard">Dashboard</a> to view your cart. </label>} */}
+                        </Card>
                     </div>
+                ))}
+                <Button variant="contained" color="secondary" className={classes.cartButton} onClick={this.onClickHandler}>Add to Cart</Button>
+                <Snackbar anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'center',
+                }}
+                    open={this.state.cartAddAlert} autoHideDuration={6000} onClose={this.handleClose}
+                    ContentProps={{
+                        'aria-describedby': 'message-id',
+                    }}
+                    message={
+                        <span id="message-id">
+                            Product added to cart.Visit <a href="./#/dashboard">Dashboard</a> to view your cart.
+                            </span>}
+                    variant="success"
+                />
+                {/* {this.state.cartAddAlert && <label>Product added to cart.Visit <a href="./#/dashboard">Dashboard</a> to view your cart. </label>} */}
+            </div>
         )
     }
 }

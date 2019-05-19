@@ -3,6 +3,7 @@ import Cart from './Cart';
 import Invoice from './Invoice';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {Button} from '@material-ui/core';
 import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCreator'
 
 
@@ -34,7 +35,8 @@ import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCre
                     (<Invoice totalBill={this.props.cartItems.totalInvoice}
                               toggleInvoice ={this.toggleInvoice}
                     ></Invoice>) : 
-                    <button onClick={this.toggleInvoice}>Show Invoice</button>
+                    <Button variant="contained" color="secondary"
+                        onClick={this.toggleInvoice}>Show Invoice</Button>
                     }
                  </div> :  
                  <div>No items in your cart </div> }
