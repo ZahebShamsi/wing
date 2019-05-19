@@ -25,9 +25,6 @@ import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCre
     render() {
         return (
             <div>
-                <div>
-                    <Link to='./products'>Products</Link>
-                </div>
                 {this.props.cartItems.cartItems.length > 0 ?
                 <div>
                     <h1>Dashboard</h1>

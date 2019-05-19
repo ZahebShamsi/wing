@@ -7,17 +7,12 @@ export default class App extends Component {
     render() {
         return(
             <div>
-                <AppTopbar/>
-                 <HashRouter>
-                {/* <LoginContainer></LoginContainer>  */}
-                {/* <ProductsContainer></ProductsContainer> */}
-                {/* <DashBoardContainer></DashBoardContainer> */}
-               <Switch>
-               {/* <Route exact path='/' component={LoginContainer} /> */}
-                </Switch>
-                { routes.map( route => <Route  {...route}/>) }
+                <HashRouter>
+                    <AppTopbar/>
+                    <Switch>
+                        { routes.map( route => <Route  {...route}/>) }
+                    </Switch>
                 </HashRouter>
-                
             </div>
         
         );

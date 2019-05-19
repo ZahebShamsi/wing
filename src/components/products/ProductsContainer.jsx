@@ -32,7 +32,6 @@ class ProductsContainer extends Component{
     render(){
         return(
             <div>
-                <Link to='/dashboard'>Dashboard</Link>
                  <Products
                         products={this.props.productsData.products}
                         onIncrementQuantity={this.onIncrementQuantity}

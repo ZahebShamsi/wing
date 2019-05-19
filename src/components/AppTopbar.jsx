@@ -4,6 +4,7 @@ import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
 import  { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const styles = {
     grow: {
@@ -78,6 +79,8 @@ class AppTopbar extends Component {
                                 onClose={this.handleClose}
                             >
                                 <MenuItem onClick={this.onClickHandle}>Logout</MenuItem>
+                                <MenuItem><Link to='/dashboard'>Dashboard</Link></MenuItem>
+                                <MenuItem><Link to='/products'>Products</Link></MenuItem>
                             </Menu>
                         </div>
                     )}
