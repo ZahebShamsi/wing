@@ -43,14 +43,13 @@ class AppTopbar extends Component {
            anchorEl: e.currentTarget
        })
     };
+    
     render() {
         let { anchorEl } = this.state;
         const open = Boolean(anchorEl);
 
         return (
             <AppBar position="fixed">
-                {this.props.sessionData.isAuthenticated ? 
-                                <Redirect to="/products"/> : <Redirect to="/"/>}
                  <Toolbar>
                     <IconButton className={this.props.classes.menuButton} color="inherit" aria-label="Menu">
                         <MenuIcon />
