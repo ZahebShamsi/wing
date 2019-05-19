@@ -10,8 +10,8 @@ import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCre
  class DashBoardContainer extends Component {
     constructor(props){
         super(props)
-        this.state = 
-        {
+        this.state = {
+            isInvoiceVisible: true
         }
         this.toggleInvoice=this.toggleInvoice.bind(this);
     }
@@ -31,13 +31,12 @@ import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCre
                     <h1>Dashboard</h1>
                     <Cart cartItems={this.props.cartItems.cartItems}></Cart>
                     <hr></hr>
-                    {this.state.isInvoiceVisible ?
-                    (<Invoice totalBill={this.props.cartItems.totalInvoice}
+                    <Invoice isInvoiceVisible={this.state.isInvoiceVisible} totalBill={this.props.cartItems.totalInvoice}
                               toggleInvoice ={this.toggleInvoice}
-                    ></Invoice>) : 
+                    ></Invoice> 
                     <Button variant="contained" color="secondary"
-                        onClick={this.toggleInvoice}>Show Invoice</Button>
-                    }
+                        onClick={this.toggleInvoice}>{this.state.toggleInvoice && "Show Invoice" }</Button>
+                    
                  </div> :  
                  <div>No items in your cart </div> }
             </div>
