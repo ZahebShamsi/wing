@@ -9,6 +9,10 @@ function loginReducer(state = intialState, action){
         return {
             ...state , isAuthenticated : action.payload
         }
+    case "LOGOUT_USER":
+        return {
+          ...state ,  isAuthenticated : false
+        }
     default :
         return state;     
   }

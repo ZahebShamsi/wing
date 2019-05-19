@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, Typography, IconButton , Menu , MenuItem } from '@material-ui/core';
+import { AppBar, Toolbar, Typography, IconButton , Menu , MenuItem, Button} from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
 import MenuIcon from '@material-ui/icons/Menu';
 import { withStyles } from '@material-ui/core/styles';
 import  { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import {  Redirect } from 'react-router-dom';
+import { logoutActionCreator } from '../reducers/login/loginActionCreators';
 
 const styles = {
     grow: {
@@ -23,7 +25,7 @@ class AppTopbar extends Component {
            anchorEl : null
         }
         this.handleClose = this.handleClose.bind(this);
-        this.onClickHandle = this.onClickHandle.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
         this.handleMenu = this.handleMenu.bind(this);
 
     }
@@ -32,8 +34,8 @@ class AppTopbar extends Component {
             anchorEl: null
         })
     }
-    onClickHandle(){
-        console.log("handleClose")
+    handleLogout(){
+        this.props.onLogoutHandler();
       };
     
     handleMenu(e) {
@@ -47,6 +49,8 @@ class AppTopbar extends Component {
 
         return (
             <AppBar position="fixed">
+                {this.props.sessionData.isAuthenticated ? 
+                                <Redirect to="/products"/> : <Redirect to="/"/>}
                  <Toolbar>
                     <IconButton className={this.props.classes.menuButton} color="inherit" aria-label="Menu">
                         <MenuIcon />
@@ -78,9 +82,12 @@ class AppTopbar extends Component {
                                 open={open}
                                 onClose={this.handleClose}
                             >
-                                <MenuItem onClick={this.onClickHandle}>Logout</MenuItem>
                                 <MenuItem><Link to='/dashboard'>Dashboard</Link></MenuItem>
                                 <MenuItem><Link to='/products'>Products</Link></MenuItem>
+                                <MenuItem>
+                                    <Button variant="outlined" color="primary"
+                                        onClick={this.handleLogout}>Logout</Button>
+                                </MenuItem>
                             </Menu>
                         </div>
                     )}
@@ -96,6 +103,11 @@ const mapStateToProps = (state) =>{
     }
 }
 
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLogoutHandler : () => dispatch(logoutActionCreator())
+    }
+}
 
-export default connect(mapStateToProps,null)(withStyles(styles)(AppTopbar));
+export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(AppTopbar));
 

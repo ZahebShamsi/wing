@@ -4,8 +4,16 @@ import Invoice from './Invoice';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Button} from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
 import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCreator'
 
+const styles = theme => ({
+    invoiceButton: {
+        position: 'fixed',
+        right: '3%',
+        bottom: '5%'
+    }
+  });
 
  class DashBoardContainer extends Component {
     constructor(props){
@@ -24,6 +32,7 @@ import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCre
         })
     }
     render() {
+        const { classes } = this.props
         return (
             <div>
                 {this.props.cartItems.cartItems.length > 0 ?
@@ -31,12 +40,11 @@ import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCre
                     <h1>Dashboard</h1>
                     <Cart cartItems={this.props.cartItems.cartItems}></Cart>
                     <hr></hr>
-                    <Invoice isInvoiceVisible={this.state.isInvoiceVisible} totalBill={this.props.cartItems.totalInvoice}
+                    <Invoice isInvoiceVisible={!this.state.isInvoiceVisible} totalBill={this.props.cartItems.totalInvoice}
                               toggleInvoice ={this.toggleInvoice}
                     ></Invoice> 
-                    <Button variant="contained" color="secondary"
-                        onClick={this.toggleInvoice}>{this.state.toggleInvoice && "Show Invoice" }</Button>
-                    
+                    <Button variant="contained" color="secondary" className={classes.invoiceButton}
+                        onClick={this.toggleInvoice}>Show Invoice</Button>
                  </div> :  
                  <div>No items in your cart </div> }
             </div>
@@ -62,4 +70,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(DashBoardContainer);
+)(withStyles(styles)(DashBoardContainer));

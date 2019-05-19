@@ -27,7 +27,7 @@ class LoginContainer extends Component{
             <div>
             <Login  username={this.state.username} password={this.state.password} 
                     onValueChange={this.onChangeHandler} onSignIn={this.onSignInHandler}/> 
-            {this.props.sessionData.isAuthenticated &&  <Redirect to ="/products" />}
+            {/* {this.props.sessionData.isAuthenticated &&  <Redirect to ="/products" />} */}
             
             </div>     
         )
