@@ -46,7 +46,7 @@ class AppTopbar extends Component {
         const open = Boolean(anchorEl);
 
         return (
-            <AppBar position="static">
+            <AppBar position="fixed">
                  <Toolbar>
                     <IconButton className={this.props.classes.menuButton} color="inherit" aria-label="Menu">
                         <MenuIcon />

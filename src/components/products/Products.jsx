@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Card, CardHeader, CardMedia, CardContent, Fab,CardActions, IconButton, Typography, Button,
+import { Card, CardHeader, CardMedia, CardContent, Fab,CardActions, IconButton, Button,
          Snackbar } from '@material-ui/core';
-import { FavoriteIcon, ShareIcon, MoreVertIcon ,AddIcon } from '@material-ui/icons';
+import { FavoriteIcon, ShareIcon, MoreVertIcon } from '@material-ui/icons';
+import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -68,15 +69,18 @@ const styles = theme => ({
                                     image={product.imgSource}
                                         title={product.name}
                                     />
-                                    <CardContent>{"Price: " + 'Rs' + product.price}</CardContent>
-                                    <CardContent>{"Quantity :" + product.quantity}</CardContent>
-                                    <Button className={classes.button} variant="contained" color="primary"
+                                    <div className= {classes.actions}>
+                                    <CardContent>{'Rs ' + product.price}</CardContent>
+                                    <Button className={classes.button} variant="contained" color="primary" size="small"
                                         onClick={() => this.props.onIncrementQuantity(product.name)}>+</Button>
-                                    <Button className={classes.button} variant="contained" color="primary" onClick={() => {
+                                    <CardContent>{product.quantity}</CardContent>
+                                    <Button className={classes.button} variant="contained" color="primary" size="small"
+                                    onClick={() => {
                                         if (product.quantity > 0) {
                                             this.props.onDecrementQuantity(product.name)
                                         }
                                     }}>-</Button>
+                                    </div>
                                 </Card>
                             </div>
                         ))}
