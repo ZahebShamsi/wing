@@ -37,7 +37,6 @@ const styles = theme => ({
             <div>
                 {this.props.cartItems.cartItems.length > 0 ?
                 <div>
-                    <h1>Dashboard</h1>
                     <Cart cartItems={this.props.cartItems.cartItems}></Cart>
                     <hr></hr>
                     <Invoice isInvoiceVisible={!this.state.isInvoiceVisible} totalBill={this.props.cartItems.totalInvoice}

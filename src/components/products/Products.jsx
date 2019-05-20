@@ -29,16 +29,13 @@ const styles = theme => ({
     actions: {
         display: 'flex',
     },
-    expand: {
-        transform: 'rotate(0deg)',
-        marginLeft: 'auto',
-        transition: theme.transitions.create('transform', {
-            duration: theme.transitions.duration.shortest,
-        }),
+    itemsFlex: {
+        display: 'flex',
+        flexWrap: 'wrap'
     },
-    expandOpen: {
-        transform: 'rotate(180deg)',
-    },
+    cardContainer: {
+        padding: '1.5%'
+    }
 });
 
 class Products extends Component {
@@ -63,9 +60,9 @@ class Products extends Component {
     render() {
         const { classes } = this.props
         return (
-            <div>
+            <div className={classes.itemsFlex} >
                 {this.props.products.map((product) => (
-                    <div>
+                    <div className={classes.cardContainer}>
                         <Card className={classes.card}>
                             <CardHeader
                                 title={product.name}
@@ -104,7 +101,6 @@ class Products extends Component {
                             </span>}
                     variant="success"
                 />
-                {/* {this.state.cartAddAlert && <label>Product added to cart.Visit <a href="./#/dashboard">Dashboard</a> to view your cart. </label>} */}
             </div>
         )
     }
