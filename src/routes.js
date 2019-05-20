@@ -5,11 +5,6 @@ import ProductsContainer from './components/products/ProductsContainer';
 const routes = [
     { 
         exact : true,
-        path : '/login',
-        component : LoginContainer
-    },
-    { 
-        exact : true,
         path : '/dashboard',
         component : DashBoardContainer
     },
@@ -21,7 +16,7 @@ const routes = [
     { 
         exact : true,
         path : '/',
-        component : LoginContainer
+        component : ProductsContainer
     }
 ]
 

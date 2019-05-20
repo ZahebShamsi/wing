@@ -3,6 +3,7 @@ import dashboardActionCreator from './dashboardActionCreator';
 let initialState = {
     cartItems : [],
     totalInvoice : 0,
+    isLoading : true
     
 }
 
@@ -14,8 +15,10 @@ function dashboardReducer (state = initialState , action){
                 totalPrice += element.price * element.quantity;
             });
             return {
+                ...state ,
                 cartItems : action.payload,
-                totalInvoice : totalPrice
+                totalInvoice : totalPrice,
+                isLoading : false
             }
                 
         default:

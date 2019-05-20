@@ -35,18 +35,21 @@ const styles = theme => ({
         const { classes } = this.props
         return (
             <div>
-                {this.props.cartItems.cartItems.length > 0 ?
-                <div>
-                    <Cart cartItems={this.props.cartItems.cartItems}></Cart>
-                    <hr></hr>
-                    <Invoice isInvoiceVisible={!this.state.isInvoiceVisible} totalBill={this.props.cartItems.totalInvoice}
-                              toggleInvoice ={this.toggleInvoice}
-                    ></Invoice> 
-                    <Button variant="contained" color="secondary" className={classes.invoiceButton}
-                        onClick={this.toggleInvoice}>Show Invoice</Button>
-                 </div> :  
-                 <div>No items in your cart </div> }
-            </div>
+                { this.props.cartItems.isLoading ? (<h6>Loading...</h6> ) :
+                     (<div>
+                            {this.props.cartItems.cartItems.length > 0 ?
+                            <div>
+                                <Cart cartItems={this.props.cartItems.cartItems}></Cart>
+                                <hr></hr>
+                                <Invoice isInvoiceVisible={!this.state.isInvoiceVisible} totalBill={this.props.cartItems.totalInvoice}
+                                        toggleInvoice ={this.toggleInvoice}
+                                ></Invoice> 
+                                <Button variant="contained" color="secondary" className={classes.invoiceButton}
+                                    onClick={this.toggleInvoice}>Show Invoice</Button>
+                            </div> :  
+                            <div>No items in your cart </div> }
+                     </div> ) }
+             </div>
         )
     }
 }
@@ -54,7 +57,7 @@ const styles = theme => ({
 const mapStateToProps = (state) => {
         return {
             cartItems : state.cartItems,
-            billingAmount : state.totalInvoice
+            billingAmount : state.totalInvoice,
         }
 }
 

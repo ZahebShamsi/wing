@@ -39,7 +39,7 @@ class AppTopbar extends Component {
     }
     handleClose(){
         this.setState({
-            anchorEl: true
+            anchorEl: null
         })
     }
     handleLogout(){
@@ -65,7 +65,6 @@ class AppTopbar extends Component {
                     <Typography variant="h6" color="inherit" className={this.props.classes.grow}>
                         Photos
                     </Typography>
-                    {this.props.sessionData.isAuthenticated && (
                         <div>
                             <IconButton
                                 aria-owns={open ? 'menu-appbar' : undefined}
@@ -97,24 +96,11 @@ class AppTopbar extends Component {
                                 </MenuItem>
                             </Menu>
                         </div>
-                    )}
                 </Toolbar>
             </AppBar> 
         )
     }
 }
 
-const mapStateToProps = (state) =>{ 
-    return {
-        sessionData : state.sessionData
-    }
-}
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onLogoutHandler : () => dispatch(logoutActionCreator())
-    }
-}
-
-export default connect(mapStateToProps,mapDispatchToProps)(withStyles(styles)(AppTopbar));
-
+export default withStyles(styles)(AppTopbar);
