@@ -1,6 +1,12 @@
 import React,{Component} from 'react';
-import { DialogActions, Divider, Button, Dialog , DialogTitle, DialogContent, DialogContentText } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles';
+import  DialogActions  from '@material-ui/core/DialogActions';
+import  Divider  from '@material-ui/core/Divider';
+import  Button  from '@material-ui/core/Button';
+import  Dialog  from '@material-ui/core/Dialog';
+import  DialogTitle  from '@material-ui/core/DialogTitle';
+import  DialogContent  from '@material-ui/core/DialogContent';
+import  DialogContentText  from '@material-ui/core/DialogContentText';
+import  { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
     invoiceContainer : {

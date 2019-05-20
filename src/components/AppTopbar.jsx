@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-import { AppBar, Toolbar, Typography, IconButton , Menu , MenuItem, Button} from '@material-ui/core';
 import { AccountCircle } from '@material-ui/icons';
-import MenuIcon from '@material-ui/icons/Menu';
+import MenuIcon from '@material-ui/core/Menu';
+import  AppBar from '@material-ui/core/AppBar';
+import  Toolbar from '@material-ui/core/Toolbar';
+import  Typography from '@material-ui/core/Typography';
+import  IconButton from '@material-ui/core/IconButton';
+import  Menu from '@material-ui/core/Menu';
+import  MenuItem from '@material-ui/core/MenuItem';
+import  Button from '@material-ui/core/Button';
+
+
 import { withStyles } from '@material-ui/core/styles';
 import  { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -31,7 +39,7 @@ class AppTopbar extends Component {
     }
     handleClose(){
         this.setState({
-            anchorEl: null
+            anchorEl: true
         })
     }
     handleLogout(){
