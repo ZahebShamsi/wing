@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Button} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import Loader from '../loader/LoaderComponent';
 import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCreator'
 
 const styles = theme => ({
@@ -35,7 +36,7 @@ const styles = theme => ({
         const { classes } = this.props
         return (
             <div>
-                { this.props.cartItems.isLoading ? (<h6>Loading...</h6> ) :
+                { this.props.cartItems.isLoading ? ( <Loader/> ) :
                      (<div>
                             {this.props.cartItems.cartItems.length > 0 ?
                             <div>

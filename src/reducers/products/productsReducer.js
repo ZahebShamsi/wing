@@ -2,7 +2,8 @@
 import productsActionCreator from './productsActionCreator';
 
 let initialState = {
-  products: []
+  products: [],
+  isLoading : true
 }
 function productsReducer(state = initialState, action) {
   switch (action.type) {
@@ -28,7 +29,9 @@ function productsReducer(state = initialState, action) {
     
     case "PRODUCT_DATA_REQUEST_SUCCESS" :
       return {
-        products : action.payload.data
+        ...state,
+        products : action.payload.data,
+        isLoading : false
       }   
 
 

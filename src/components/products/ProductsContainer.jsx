@@ -32,12 +32,16 @@ class ProductsContainer extends Component{
     render(){
         return(
             <div>
-                 <Products
-                        products={this.props.productsData.products}
-                        onIncrementQuantity={this.onIncrementQuantity}
-                        onDecrementQuantity={this.onDecrementQuantity}
-                        addToCart = {this.addToCartHandler}>
-                </Products>      
+                {this.props.productsData.isLoading ? (<h6>Loading...</h6>) :
+                    (<div>
+                        <Products
+                            products={this.props.productsData.products}
+                            onIncrementQuantity={this.onIncrementQuantity}
+                            onDecrementQuantity={this.onDecrementQuantity}
+                            addToCart = {this.addToCartHandler}>
+                        </Products>      
+                    </div>)
+                }
             </div>
         )
     }
