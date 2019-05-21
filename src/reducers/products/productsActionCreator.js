@@ -21,3 +21,9 @@ export const productDataRequest = () => {
             type : "PRODUCT_DATA_REQUEST",
         }
 }
+
+export const loaderActionCreators = () => {
+    return {
+        type : "SET_LOADER"
+    }
+}

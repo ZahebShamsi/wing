@@ -2,7 +2,9 @@ import React,{Component} from 'react';
 import Products from './Products';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
-import {qIncrementActionCreator, qDecrementActionCreator, productDataRequest} from '../../reducers/products/productsActionCreator';
+import Loader from '../loader/LoaderComponent';
+import {qIncrementActionCreator, qDecrementActionCreator, productDataRequest ,
+        loaderActionCreators } from '../../reducers/products/productsActionCreator';
 import {dashboardActionCreator} from '../../reducers/dashboard/dashboardActionCreator';
 
 class ProductsContainer extends Component{   
@@ -23,16 +25,18 @@ class ProductsContainer extends Component{
         this.props.onDecrementQuantityHandler(productName);
     }
     addToCartHandler(){
-        let selectedQuant = this.props.productsData.products.filter((products)=>products.quantity > 0 )
+        let selectedQuant = this.props.productsData.products.filter((products)=>products.quantity > 0 );
+        this.props.setLoader();
         this.props.onAddtoCartHandler(selectedQuant);
     }
     componentDidMount(){
+        this.props.setLoader();
         this.props.productDatRequest();
     }
     render(){
         return(
             <div>
-                {this.props.productsData.isLoading ? (<h6>Loading...</h6>) :
+                {this.props.productsData.isLoading ? (<Loader/>) :
                     (<div>
                         <Products
                             products={this.props.productsData.products}
@@ -49,7 +53,7 @@ class ProductsContainer extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        productsData: state.productsData
+        productsData: state.productsData,
     }
 }
 const mapDispatchToProps  = dispatch => {
@@ -63,9 +67,12 @@ const mapDispatchToProps  = dispatch => {
         onAddtoCartHandler : (selectedQuant) => {
             dispatch(dashboardActionCreator(selectedQuant))
         },
-        productDatRequest : () =>{
+        productDatRequest : () => {
             dispatch(productDataRequest())
-        } 
+        },
+        setLoader : () => {
+            dispatch(loaderActionCreators())
+        },
     }   
 }
 

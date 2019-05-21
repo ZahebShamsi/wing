@@ -15,7 +15,7 @@ function productsReducer(state = initialState, action) {
         }
         return product
       })
-      return { products: products };
+      return { ...state , products: products };
 
     case "DECREMENT_QUANTITY":
       let productsData = state.products.map((productdata) => {
@@ -25,15 +25,24 @@ function productsReducer(state = initialState, action) {
         }
         return productdata
       })
-      return { products: productsData };
+      return { ...state , products: productsData };
     
     case "PRODUCT_DATA_REQUEST_SUCCESS" :
       return {
         ...state,
         products : action.payload.data,
-        isLoading : false
+        isLoading : true
       }   
-
+    case "SET_LOADER" : 
+      return {
+        ...state,
+        isLoading :true
+      }
+    case "HIDE_LOADER" : 
+      return {
+        ...state ,
+        isLoading : false
+      }
 
     default:
       return state;

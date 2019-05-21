@@ -9,6 +9,7 @@ export function* addToCartSaga(){
 function* addToCart(params){
     let result = yield call( addToCartRequest, params.payload );
     yield put( { type : "ADD_TO_CART_REQUEST_SUCCESS" , payload : result } )
+    yield put( { type : "HIDE_LOADER"  } )
 }
 
 export function* loadCartData(){
