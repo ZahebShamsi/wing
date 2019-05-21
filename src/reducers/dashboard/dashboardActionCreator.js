@@ -11,3 +11,9 @@ export const loadCartItemsRequest = () => {
         type : "LOAD_CART_DATA_REQUEST",
     }
 }
+
+export const loaderActionCreator = () => {
+    return {
+        type : "SHOW_LOADER"
+    }
+}

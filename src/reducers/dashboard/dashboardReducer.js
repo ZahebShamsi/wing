@@ -20,6 +20,11 @@ function dashboardReducer (state = initialState , action){
                 totalInvoice : totalPrice,
                 isLoading : false
             }
+        case "SHOW_LOADER":
+            return {
+                ...state, 
+                isLoading : true
+            }
                 
         default:
             return state;
