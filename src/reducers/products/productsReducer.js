@@ -3,7 +3,8 @@ import productsActionCreator from './productsActionCreator';
 
 let initialState = {
   products: [],
-  isLoading : true
+  isLoading : true,
+  cartAddAlert: false
 }
 function productsReducer(state = initialState, action) {
   switch (action.type) {
@@ -31,7 +32,7 @@ function productsReducer(state = initialState, action) {
       return {
         ...state,
         products : action.payload.data,
-        isLoading : true
+        isLoading : false
       }   
     case "SET_LOADER" : 
       return {
@@ -41,7 +42,8 @@ function productsReducer(state = initialState, action) {
     case "HIDE_LOADER" : 
       return {
         ...state ,
-        isLoading : false
+        isLoading : false,
+        cartAddAlert: true
       }
 
     default:

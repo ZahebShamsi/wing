@@ -38,7 +38,6 @@ class Cart extends Component {
         const { classes } = this.props
         return (
             <div>
-                <h2>Cart</h2>
                 <div className={classes.itemsFlex}>
                     {this.props.cartItems.map((cartItem) => (
                         <div className={classes.cardContainer}>

@@ -5,7 +5,7 @@ import  CardMedia  from '@material-ui/core/CardMedia';
 import  CardContent  from '@material-ui/core/CardContent';
 import  Button  from '@material-ui/core/Button';
 import  Snackbar  from '@material-ui/core/Snackbar';
-
+import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
@@ -40,21 +40,34 @@ const styles = theme => ({
 
 class Products extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
-            cartAddAlert: false
+            shouldDisplayMessage : false,
+            message: null
         }
         this.onClickHandler = this.onClickHandler.bind(this)
     }
     onClickHandler() {
-        this.props.products.forEach(element => {
-            if (element.quantity > 0) {
-                this.setState({
-                    cartAddAlert: true
-                })
-            }
-        });
-        this.props.addToCart();
+        let selectedQuant = this.props.products.filter((products)=>products.quantity > 0 );
+        if (selectedQuant.length == 0 ) {
+            this.setState({
+                shouldDisplayMessage : true,
+                message: "You haven't selected any items. Please select atleast one item to add to your cart."
+             })
+        } 
+        if (selectedQuant.length > 0 ) {
+            this.props.addToCart(selectedQuant);
+        }
+         
+    }
+
+    componentDidMount() {
+        if(this.props.cartAddAlert) {
+            this.setState({
+                shouldDisplayMessage : true,
+                message: <span>Products added to cart. Visit <Link to='/dashboard/'>Dashboard</Link> to view your cart.</span>
+             })
+        } 
     }
 
     render() {
@@ -91,14 +104,11 @@ class Products extends Component {
                     vertical: 'bottom',
                     horizontal: 'center',
                 }}
-                    open={this.state.cartAddAlert} autoHideDuration={6000} onClose={this.handleClose}
+                    open={this.state.shouldDisplayMessage} autoHideDuration={6000} onClose={this.handleClose}
                     ContentProps={{
                         'aria-describedby': 'message-id',
                     }}
-                    message={
-                        <span id="message-id">
-                            Product added to cart.Visit <a href="./#/dashboard">Dashboard</a> to view your cart.
-                            </span>}
+                    message={this.state.message}
                     variant="success"
                 />
             </div>

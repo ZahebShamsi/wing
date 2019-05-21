@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Button} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
 import Loader from '../loader/LoaderComponent';
 import  {loadCartItemsRequest, loaderActionCreator} from '../../reducers/dashboard/dashboardActionCreator'
 
@@ -13,7 +14,12 @@ const styles = theme => ({
         position: 'fixed',
         right: '3%',
         bottom: '5%'
-    }
+    },
+    root: {
+        ...theme.typography.button,
+        backgroundColor: theme.palette.common.white,
+        padding: theme.spacing.unit,
+      }
   });
 
  class DashBoardContainer extends Component {
@@ -37,6 +43,8 @@ const styles = theme => ({
         const { classes } = this.props
         return (
             <div>
+                <div className={classes.root}>{" MY CART"}</div>
+                
                 { this.props.cartItems.isLoading ? ( <Loader/> ) :
                      (<div>
                             {this.props.cartItems.cartItems.length > 0 ?

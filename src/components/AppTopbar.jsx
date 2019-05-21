@@ -88,8 +88,8 @@ class AppTopbar extends Component {
                                 open={open}
                                 onClose={this.handleClose}
                             >
-                                <MenuItem><Link to='/dashboard'>Dashboard</Link></MenuItem>
-                                <MenuItem><Link to='/products'>Products</Link></MenuItem>
+                                <MenuItem onClick={this.handleClose}><Link to='/dashboard'>Dashboard</Link></MenuItem>
+                                <MenuItem onClick={this.handleClose}><Link to='/products'>Products</Link></MenuItem>
                                 <MenuItem>
                                     <Button variant="outlined" color="primary"
                                         onClick={this.handleLogout}>Logout</Button>

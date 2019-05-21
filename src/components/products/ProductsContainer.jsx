@@ -12,7 +12,7 @@ class ProductsContainer extends Component{
        
         super(props);
         this.state = {
-            data : []
+            data : [],
         }
         this.onIncrementQuantity=this.onIncrementQuantity.bind(this);
         this.onDecrementQuantity=this.onDecrementQuantity.bind(this);
@@ -24,8 +24,7 @@ class ProductsContainer extends Component{
     onDecrementQuantity(productName){
         this.props.onDecrementQuantityHandler(productName);
     }
-    addToCartHandler(){
-        let selectedQuant = this.props.productsData.products.filter((products)=>products.quantity > 0 );
+    addToCartHandler(selectedQuant){
         this.props.setLoader();
         this.props.onAddtoCartHandler(selectedQuant);
     }
@@ -42,7 +41,8 @@ class ProductsContainer extends Component{
                             products={this.props.productsData.products}
                             onIncrementQuantity={this.onIncrementQuantity}
                             onDecrementQuantity={this.onDecrementQuantity}
-                            addToCart = {this.addToCartHandler}>
+                            addToCart = {this.addToCartHandler}
+                            cartAddAlert={this.props.productsData.cartAddAlert}>
                         </Products>      
                     </div>)
                 }
