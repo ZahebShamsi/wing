@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import {Button} from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Loader from '../loader/LoaderComponent';
-import  {loadCartItemsRequest} from '../../reducers/dashboard/dashboardActionCreator'
+import  {loadCartItemsRequest, loaderActionCreator} from '../../reducers/dashboard/dashboardActionCreator'
 
 const styles = theme => ({
     invoiceButton: {
@@ -25,6 +25,7 @@ const styles = theme => ({
         this.toggleInvoice=this.toggleInvoice.bind(this);
     }
     componentDidMount(){
+        this.props.setLoader();
         this.props.cartItemsLoad();
     }
     toggleInvoice(){
@@ -64,7 +65,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        cartItemsLoad : () => dispatch(loadCartItemsRequest())
+        cartItemsLoad : () => dispatch(loadCartItemsRequest()),
+        setLoader : () => dispatch(loaderActionCreator())
 
     }
 }
