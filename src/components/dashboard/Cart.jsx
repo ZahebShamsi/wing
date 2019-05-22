@@ -30,7 +30,12 @@ const styles = theme => ({
     },
     cardContainer: {
         padding: '1.5%'
-    }
+    },
+    root: {
+        ...theme.typography.button,
+        backgroundColor: theme.palette.common.white,
+        padding: theme.spacing.unit,
+      }
 });
 
 class Cart extends Component {
@@ -38,6 +43,7 @@ class Cart extends Component {
         const { classes } = this.props
         return (
             <div>
+                <div className={classes.root}>{" MY CART"}</div>
                 <div className={classes.itemsFlex}>
                     {this.props.cartItems.map((cartItem) => (
                         <div className={classes.cardContainer}>

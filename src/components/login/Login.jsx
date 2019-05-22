@@ -1,29 +1,58 @@
 import React, { Component } from 'react';
 import  TextField  from '@material-ui/core/TextField';
 import  Button  from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import { withStyles } from '@material-ui/core/styles';
+// import loginBgImage from './loginBgImage.jpg';
 
+const styles = {
+    textFieldContainer : {
+       width : '80%'
+    },
+    paperContainer : {
+        paddingBottom : '2%',
+        // paddingTop : '5%'
+        textAlign : "center",
+        width : '50%',
+        position: 'absolute',
+        top: '20%',
+        left: '25%',
+    },
+    loginPageContainer : {
+        backgroundImage: `url(${"https://wallpaperfm.com/img/original/0/1/3/37455.jpg"})`,
+        // backgroundImage: `url(${loginBgImage})`
+    }
+}
 
-export default class Login extends Component {    
+class Login extends Component {    
     render() {
+        const { classes } = this.props;
         return (
-            <div>
-                <TextField id="username" label="Username" margin="normal"
-                            name="username"
-                            placeholder="Enter your username" variant="outlined"
-                            value={ this.props.username }
-                            onChange={ this.props.onValueChange }
-                />
-                <br/>
-                <TextField id= "password" label="Password" margin="normal"
-                            name="password"
-                            placeholder = "Enter your password" variant="outlined"
-                            value = { this.props.password }
-                            onChange= { this.props.onValueChange }
-                />
-                <br/>
-                <Button variant="contained" color="primary" onClick={this.props.onSignIn}>Sign In</Button>
+            <div className={classes.loginPageContainer} >
+            <div >
+                <Paper className={classes.paperContainer}>
+                    <div><h2>Demo</h2></div>
+                    <TextField className={classes.textFieldContainer} id="username" label="Username" margin="normal"
+                                name="username"
+                                placeholder="Enter your username" variant="outlined"
+                                value={ this.props.username }
+                                onChange={ this.props.onValueChange }
+                    />
+                    <br/>
+                    <TextField className={classes.textFieldContainer} id= "password" label="Password" margin="normal"
+                                name="password"
+                                placeholder = "Enter your password" variant="outlined"
+                                value = { this.props.password }
+                                onChange= { this.props.onValueChange }
+                    />
+                    <br/>
+                    <br/>
+                    <Button variant="contained" color="primary" onClick={this.props.onSignIn}>Sign In</Button>
+                </Paper>
+            </div>
             </div>
         )
     }
-
 }
+
+export default withStyles(styles)(Login);

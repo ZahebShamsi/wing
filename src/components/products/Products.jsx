@@ -9,6 +9,11 @@ import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = theme => ({
+    root: {
+        ...theme.typography.button,
+        backgroundColor: theme.palette.common.white,
+        padding: theme.spacing.unit,
+    },
     card: {
         maxWidth: 300,
     },
@@ -73,44 +78,47 @@ class Products extends Component {
     render() {
         const { classes } = this.props
         return (
-            <div className={classes.itemsFlex} >
-                {this.props.products.map((product) => (
-                    <div className={classes.cardContainer}>
-                        <Card className={classes.card}>
-                            <CardHeader
-                                title={product.name}
-                            />
-                            <CardMedia className={classes.media}
-                                image={product.imgSource}
-                                title={product.name}
-                            />
-                            <div className={classes.actions}>
-                                <CardContent>{'Rs ' + product.price}</CardContent>
-                                <Button className={classes.button} variant="contained" color="primary" size="small"
-                                    onClick={() => this.props.onIncrementQuantity(product.name)}>+</Button>
-                                <CardContent>{product.quantity}</CardContent>
-                                <Button className={classes.button} variant="contained" color="primary" size="small"
-                                    onClick={() => {
-                                        if (product.quantity > 0) {
-                                            this.props.onDecrementQuantity(product.name)
-                                        }
-                                    }}>-</Button>
-                            </div>
-                        </Card>
-                    </div>
-                ))}
-                <Button variant="contained" color="secondary" className={classes.cartButton} onClick={this.onClickHandler}>Add to Cart</Button>
-                <Snackbar anchorOrigin={{
-                    vertical: 'bottom',
-                    horizontal: 'center',
-                }}
-                    open={this.state.shouldDisplayMessage} autoHideDuration={6000} onClose={this.handleClose}
-                    ContentProps={{
-                        'aria-describedby': 'message-id',
+            <div>
+                <div className={classes.root}>{"CHOOSE YOUR PRODUCT"}</div>
+                <div className={classes.itemsFlex} >
+                    {this.props.products.map((product) => (
+                        <div className={classes.cardContainer}>
+                            <Card className={classes.card}>
+                                <CardHeader
+                                    title={product.name}
+                                />
+                                <CardMedia className={classes.media}
+                                    image={product.imgSource}
+                                    title={product.name}
+                                />
+                                <div className={classes.actions}>
+                                    <CardContent>{'Rs ' + product.price}</CardContent>
+                                    <Button className={classes.button} variant="contained" color="primary" size="small"
+                                        onClick={() => this.props.onIncrementQuantity(product.name)}>+</Button>
+                                    <CardContent>{product.quantity}</CardContent>
+                                    <Button className={classes.button} variant="contained" color="primary" size="small"
+                                        onClick={() => {
+                                            if (product.quantity > 0) {
+                                                this.props.onDecrementQuantity(product.name)
+                                            }
+                                        }}>-</Button>
+                                </div>
+                            </Card>
+                        </div>
+                    ))}
+                    <Button variant="contained" color="secondary" className={classes.cartButton} onClick={this.onClickHandler}>Add to Cart</Button>
+                    <Snackbar anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
                     }}
-                    message={this.state.message}
-                    variant="success"
-                />
+                        open={this.state.shouldDisplayMessage} autoHideDuration={6000} onClose={this.handleClose}
+                        ContentProps={{
+                            'aria-describedby': 'message-id',
+                        }}
+                        message={this.state.message}
+                        variant="success"
+                    />
+                </div>
             </div>
         )
     }

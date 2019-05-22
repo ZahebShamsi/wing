@@ -9,12 +9,12 @@ class App extends Component {
     
     render() {
         return(
-            <div style={{backgroundColor: '#e0e2e5',}}>
+            <div style={{backgroundColor: '#e0e2e5', height: '100vh'}}>
                 <HashRouter>
                     {  this.props.sessionData.isAuthenticated ?  
                    ( <div>
                         <AppTopbar/>
-                            <div style={{marginTop: '9%'}}>
+                            <div style={{marginTop: '11vh'}}>
                                 <Switch>
                                     { routes.map( route => <Route  {...route}/>) }
                                 </Switch>
