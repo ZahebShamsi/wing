@@ -11,7 +11,6 @@ const styles = {
     },
     paperContainer : {
         paddingBottom : '2%',
-        // paddingTop : '5%'
         textAlign : "center",
         width : '50%',
         position: 'absolute',
@@ -19,8 +18,8 @@ const styles = {
         left: '25%',
     },
     loginPageContainer : {
-        backgroundImage: `url(${"https://wallpaperfm.com/img/original/0/1/3/37455.jpg"})`,
-        // backgroundImage: `url(${loginBgImage})`
+        backgroundImage: "url(https://hdqwalls.com/download/lion-graffiti-5k-pk-3840x2160.jpg)",
+        height: "100vh"
     }
 }
 
@@ -29,7 +28,6 @@ class Login extends Component {
         const { classes } = this.props;
         return (
             <div className={classes.loginPageContainer} >
-            <div >
                 <Paper className={classes.paperContainer}>
                     <div><h2>Demo</h2></div>
                     <TextField className={classes.textFieldContainer} id="username" label="Username" margin="normal"
@@ -49,7 +47,6 @@ class Login extends Component {
                     <br/>
                     <Button variant="contained" color="primary" onClick={this.props.onSignIn}>Sign In</Button>
                 </Paper>
-            </div>
             </div>
         )
     }
