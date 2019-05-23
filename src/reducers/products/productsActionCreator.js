@@ -27,3 +27,9 @@ export const loaderActionCreators = () => {
         type : "SET_LOADER"
     }
 }
+
+export const hideCartNotification = () => {
+    return {
+        type : "HIDE_CART_NOTIFICATION"
+    }
+}

@@ -45,6 +45,12 @@ function productsReducer(state = initialState, action) {
         isLoading : false,
         cartAddAlert: true
       }
+      
+    case "HIDE_CART_NOTIFICATION" :
+      return {
+        ...state,
+        cartAddAlert : false
+      }
 
     default:
       return state;

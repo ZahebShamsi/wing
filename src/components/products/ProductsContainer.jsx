@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
 import Loader from '../loader/LoaderComponent';
 import {qIncrementActionCreator, qDecrementActionCreator, productDataRequest ,
-        loaderActionCreators } from '../../reducers/products/productsActionCreator';
+        loaderActionCreators, hideCartNotification} from '../../reducers/products/productsActionCreator';
 import {dashboardActionCreator} from '../../reducers/dashboard/dashboardActionCreator';
 
 class ProductsContainer extends Component{   
@@ -30,7 +30,10 @@ class ProductsContainer extends Component{
     }
     componentDidMount(){
         this.props.setLoader();
-        this.props.productDatRequest();
+        this.props.productDataRequest();
+    }
+    componentWillUnmount(){
+        this.props.hideCartNotification();
     }
     render(){
         return(
@@ -67,12 +70,15 @@ const mapDispatchToProps  = dispatch => {
         onAddtoCartHandler : (selectedQuant) => {
             dispatch(dashboardActionCreator(selectedQuant))
         },
-        productDatRequest : () => {
+        productDataRequest : () => {
             dispatch(productDataRequest())
         },
         setLoader : () => {
             dispatch(loaderActionCreators())
         },
+        hideCartNotification : () => {
+            dispatch(hideCartNotification())
+        }
     }   
 }
 

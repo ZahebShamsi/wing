@@ -75,6 +75,12 @@ class Products extends Component {
         } 
     }
 
+    handleClose() {
+        this.setState({
+            shouldDisplayMessage : false,
+         })
+    }
+
     render() {
         const { classes } = this.props
         return (
@@ -111,7 +117,7 @@ class Products extends Component {
                         vertical: 'bottom',
                         horizontal: 'center',
                     }}
-                        open={this.state.shouldDisplayMessage} autoHideDuration={6000} onClose={this.handleClose}
+                        open={this.state.shouldDisplayMessage} autoHideDuration={6000} onRequestClose={this.handleClose} onClose={this.handleClose}
                         ContentProps={{
                             'aria-describedby': 'message-id',
                         }}

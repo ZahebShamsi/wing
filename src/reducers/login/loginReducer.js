@@ -1,4 +1,4 @@
-import signInActionCreator from './loginActionCreators';
+import { signInActionCreator, logoutActionCreator } from './loginActionCreators';
 
 let intialState = {
     isAuthenticated: false
