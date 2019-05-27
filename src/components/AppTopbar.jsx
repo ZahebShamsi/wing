@@ -102,5 +102,18 @@ class AppTopbar extends Component {
     }
 }
 
+const mapStateToProps = (state) => {
+    return {
+        logOut : state.sessionData
+    }
+}
 
-export default withStyles(styles)(AppTopbar);
+const mapDispatchToProps = dispatch => {
+return {
+    onLogoutHandler : () => dispatch(logoutActionCreator()),
+}
+}
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(withStyles(styles)(AppTopbar));

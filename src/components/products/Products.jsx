@@ -5,6 +5,8 @@ import  CardMedia  from '@material-ui/core/CardMedia';
 import  CardContent  from '@material-ui/core/CardContent';
 import  Button  from '@material-ui/core/Button';
 import  Snackbar  from '@material-ui/core/Snackbar';
+import  IconButton from '@material-ui/core/IconButton';
+import  CloseIcon from '@material-ui/icons/Close';
 import { Link } from "react-router-dom";
 import { withStyles } from '@material-ui/core/styles';
 
@@ -40,7 +42,7 @@ const styles = theme => ({
     },
     cardContainer: {
         padding: '1.5%'
-    }
+    },
 });
 
 class Products extends Component {
@@ -50,7 +52,8 @@ class Products extends Component {
             shouldDisplayMessage : false,
             message: null
         }
-        this.onClickHandler = this.onClickHandler.bind(this)
+        this.onClickHandler = this.onClickHandler.bind(this);
+        this.handleClose = this.handleClose.bind(this)
     }
     onClickHandler() {
         let selectedQuant = this.props.products.filter((products)=>products.quantity > 0 );
@@ -70,11 +73,16 @@ class Products extends Component {
         if(this.props.cartAddAlert) {
             this.setState({
                 shouldDisplayMessage : true,
-                message: <span>Products added to cart. Visit <Link to='/dashboard/'>Dashboard</Link> to view your cart.</span>
+                message: <span>Products added to cart. Visit <Link to='/dashboard/'><span style={{ color: 'red' }}>Dashboard</span></Link> to view your cart.</span>
              })
         } 
     }
 
+    componentWillUnmount() {
+        this.setState({
+            shouldDisplayMessage : true,
+         })
+    }
     handleClose() {
         this.setState({
             shouldDisplayMessage : false,
@@ -113,16 +121,29 @@ class Products extends Component {
                         </div>
                     ))}
                     <Button variant="contained" color="secondary" className={classes.cartButton} onClick={this.onClickHandler}>Add to Cart</Button>
-                    <Snackbar anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'center',
-                    }}
-                        open={this.state.shouldDisplayMessage} autoHideDuration={6000} onRequestClose={this.handleClose} onClose={this.handleClose}
-                        ContentProps={{
-                            'aria-describedby': 'message-id',
-                        }}
-                        message={this.state.message}
-                        variant="success"
+                    <Snackbar   anchorOrigin={{
+                                    vertical: 'bottom',
+                                    horizontal: 'center',
+                                        }}
+                                open={this.state.shouldDisplayMessage} 
+                                autoHideDuration={6000} 
+                                onRequestClose={this.handleClose} 
+                                onClose={this.handleClose}
+                                ContentProps={{
+                                    'aria-describedby': 'message-id',
+                                        }}
+                                message={this.state.message}
+                                variant="success"
+                                action={[
+                                    <IconButton
+                                      key="close"
+                                      aria-label="Close"
+                                      color="inherit"
+                                      onClick={this.handleClose}
+                                    >
+                                      <CloseIcon />
+                                    </IconButton>,
+                                  ]}
                     />
                 </div>
             </div>

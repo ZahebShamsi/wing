@@ -20,7 +20,12 @@ class LoginContainer extends Component{
         })
     }
     onSignInHandler(e){
-        this.props.signInHandler();
+        if(this.state.username == "admin" && this.state.password == "admin"){
+            this.props.signInHandler();
+        }
+        else {
+            alert("Enter correct credentials")
+        }
     }
     render(){
         return (
