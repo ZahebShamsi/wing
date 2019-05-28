@@ -38,7 +38,7 @@ class Login extends Component {
                     />
                     <br/>
                     <TextField className={classes.textFieldContainer} id= "password" label="Password" margin="normal"
-                                name="password"
+                                name="password" type = 'password'
                                 placeholder = "Enter your password" variant="outlined"
                                 value = { this.props.password }
                                 onChange= { this.props.onValueChange }
