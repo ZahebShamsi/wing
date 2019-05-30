@@ -10,3 +10,5 @@
 
 
 1. Help for setting up the project without using create-react-app (https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6da39a3c-99dd-4189-8e5d-4f01ed33ee4b/deploy-status)](https://app.netlify.com/sites/priceless-swanson-216cb1/deploys)
