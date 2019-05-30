@@ -18,7 +18,8 @@ const styles = {
         left: '25%',
     },
     loginPageContainer : {
-        backgroundImage: "url(https://hdqwalls.com/download/lion-graffiti-5k-pk-3840x2160.jpg)",
+        backgroundImage: "url(https://bereanfamily.com/wp-content/uploads/2017/12/Foggy-Mountains.jpg?w=640)",
+        backgroundRepeat: "no-repeat",
         height: "100vh"
     }
 }
@@ -29,7 +30,7 @@ class Login extends Component {
         return (
             <div className={classes.loginPageContainer} >
                 <Paper className={classes.paperContainer}>
-                    <div><h2>Demo</h2></div>
+                    <div><h2>Trekway</h2></div>
                     <TextField className={classes.textFieldContainer} id="username" label="Username" margin="normal"
                                 name="username"
                                 placeholder="Enter your username" variant="outlined"

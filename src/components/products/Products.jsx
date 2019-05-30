@@ -27,10 +27,12 @@ const styles = theme => ({
     button: {
         marginLeft: '5%',
         margin: theme.spacing.unit,
+        height : '30%'
         
     },
     media: {
         height: 0,
+        backgroundSize: 'contain',
         paddingTop: '56.25%', // 16:9
     },
     actions: {
